@@ -7,14 +7,14 @@ def main():
     n = int(input())
     point = [0] * (n + 1)
 
-    money = list(map(int,input().split()))
-    cards = [[0] for _ in range(n+1)]
+    bet = list(map(int,input().split()))
+    cards = [[] for _ in range(n+1)]
     first_card = input().split()
 
     first_card.append(first_card.pop(0))
     for i in range(len(first_card)):
         point[i] += card_to_point(first_card[i])
-        cards[i][0] = first_card[i]
+        cards[i].append(first_card[i])
     
     i = 0
     while i < n:
@@ -46,15 +46,13 @@ def main():
             
     for i in range(len(point)-1):
         if point[i] == 11:
-            print(f"Player{i} -{money[i]}")
+            print(f"Player{i+1} -{bet[i]}")
         elif point[i] == 10.5:
-            print(f"Player{i} +{money[i]}")
+            print(f"Player{i+1} +{bet[i]}")
         elif point[i] > point[-1]:
-            print(f"Player{i} +{money[i]}")
+            print(f"Player{i+1} +{bet[i]}")
         else:
-            print(f"Player{i} -{money[i]}")
-
-
+            print(f"Player{i+1} -{bet[i]}")
 
 if __name__ == "__main__":
     main()
