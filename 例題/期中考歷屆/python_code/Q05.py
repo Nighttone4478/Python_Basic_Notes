@@ -42,27 +42,27 @@ def main():
     suit_table = {'S','H','D','C'}
     point_table = {'A','2','3','4','5','6','7','8','9','10','J','Q','K'}
     data = []
-    isDuplicate = False
-    isErroe = False
+    isError  = False
+    dup_tmp = []
 
     for _ in range(2):
         cards = input().split()
 
-        if sorted(cards) != sorted(list(set(cards))):
-            isDuplicate = True
+        dup_tmp += cards
         
         cards = [[x[:-1],x[-1]] for x in cards]
 
         for card in cards :
-            if len(card) != 2: isErroe = True
-            if card[0] not in point_table: isErroe = True
-            if card[1] not in suit_table: isErroe = True
+            if card[0] not in point_table: isError  = True
+            if card[1] not in suit_table: isError  = True
         
-        cards = [[card_to_point(x),y] for x,y in cards]
-        data.append(cards)
+        if not isError:
+            cards = [[card_to_point(x),y] for x,y in cards]
+            data.append(cards)
 
-    if isErroe: print("Error input") ; return
-    elif isDuplicate: print("Duplicate deal") ; return 
+
+    if isError : print("Error input") ; return
+    elif len(dup_tmp) != len(set(dup_tmp)): print("Duplicate deal") ; return 
 
     _max = 0
 
