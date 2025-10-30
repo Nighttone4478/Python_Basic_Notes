@@ -40,7 +40,7 @@ def main():
             print_number(2,i+1,1)
             print_mark("^",L-i-1)
             print()
-        for i in range(L-1,-1,-1):
+        for i in range(L-2,-1,-1):
             print_mark("^",L-i-1)
             print_number(i+1,1,-1)
             print_number(2,i+1,1)
